@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link href="https://fonts.cdnfonts.com/css/rns-camelia" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <img src="assets/jogo_da_velhaArtboard-1.png" id="menuImg">
+    <div id="menu">
+        <button class="1player" onclick="start('single')">1 Jogador</button>
+        <button class="2players" onclick="start('multi')">2 Jogadores</button>
+    </div>
+
+    <table id='hash'>
+        <tr>
+            <td id="1"></td>
+            <td id="2"></td>
+            <td id="3"></td>
+        </tr>
+        <tr>
+            <td id="4"></td>
+            <td id="5"></td>
+            <td id="6"></td>
+        </tr>
+        <tr>
+            <td id="7"></td>
+            <td id="8"></td>
+            <td id="9"></td>
+        </tr>
+    </table>
+
+    <div id="endgame">
+        <h1 id='gameover'>Game Over</h1>
+        <button onclick="replay()">Replay</button>
+        <button onclick="mainMenu()">Menu Principal</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
