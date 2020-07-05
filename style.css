@@ -83,3 +83,15 @@ table tr:first-child td {
 table tr:last-child td {
     border-bottom: 0px;
 }
+
+.Oscore{
+    display: inline-block;
+}
+
+.Xscore{
+}
+
+#scoreboard{
+    text-align: center;
+    margin-top: 520px;
+}

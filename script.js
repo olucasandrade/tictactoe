@@ -17,8 +17,9 @@ let menu = document.getElementById('menu');
 let menuImg = document.getElementById('menuImg');
 let hash = document.getElementById('hash');
 let counter = 0;
-
-
+let Xscore = document.getElementById('Xscore');
+let Oscore = document.getElementById('Oscore');
+console.log(Xscore)
 
 // Start The Game Function
 function start(gameMode) {
@@ -40,6 +41,8 @@ function singleMode() {
     for (i = 0; i < fields.length; i++) {
         fields[i].addEventListener('click', singlePlayerFunction)
     }
+    checkWin();
+
 }
 
 // Single Player Function
@@ -83,7 +86,6 @@ let singlePlayerFunction = function jogada1() {
             counter = 9
         }
     }
-    checkWin();
 }
 
 
@@ -136,6 +138,8 @@ function checkWin() {
     ) {
         setTimeout(function() {
             gameOver('X');
+            Xscore.innerText = parseInt(Xscore.innerText) + 1
+            console.log('ncjsndjns')
         }, 250)
         return true;
     } else if (
@@ -149,6 +153,7 @@ function checkWin() {
         casa3.innerText == 'O' && casa5.innerText == 'O' && casa7.innerText == 'O') {
         setTimeout(function() {
             gameOver('O');
+            Oscore.innerText = parseInt(Oscore.innerText) + 1
         }, 250)
         return true;
     } else if (counter == 9) {
