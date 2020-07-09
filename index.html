@@ -13,8 +13,8 @@
 <body>
     <img src="assets/jogo_da_velhaArtboard-1.png" id="menuImg">
     <div id="menu">
-        <button class="1player" onclick="start('single')">1 Jogador</button>
-        <button class="2players" onclick="start('multi')">2 Jogadores</button>
+        <input type="image" src="assets/oneplayer.png" onclick="start('single')" id="oneplayer">
+        <input type="image" src="assets/twoplayers.png" onclick="start('multi')" id="twoplayers">
     </div>
 
     <table id='hash'>
@@ -36,11 +36,8 @@
     </table>
 
     <div id="scoreboard">
-        <h3 id="placar">Placar</h3>
-        <span>X: <span id="Xscore">0</span></span>
-        <span>O: 
-            <span id="Oscore">0</span>
-        </span>
+        <p id="wins1">X: 0</p>
+        <p id="wins2">O: 0</p>
     </div>
 
     <div id="endgame">

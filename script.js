@@ -2,6 +2,10 @@
 let fields = document.querySelectorAll('td');
 let plays1 = 0;
 let plays2 = 0;
+let wins1 = 0;
+let wins2 = 0;
+let score1 = document.getElementById('wins1');
+let score2 = document.getElementById('wins2');
 let casa1 = document.getElementById('1');
 let casa2 = document.getElementById('2');
 let casa3 = document.getElementById('3');
@@ -16,16 +20,17 @@ let endgame = document.getElementById('endgame');
 let menu = document.getElementById('menu');
 let menuImg = document.getElementById('menuImg');
 let hash = document.getElementById('hash');
+let scoreboard = document.getElementById('scoreboard');
 let counter = 0;
-let Xscore = document.getElementById('Xscore');
-let Oscore = document.getElementById('Oscore');
-console.log(Xscore)
+let isOver = false;
+
+
 
 // Start The Game Function
 function start(gameMode) {
-    menu.style.display = 'none';
-    menuImg.style.display = 'none';
-    hash.style.display = 'block';
+    menu.style.display = menuImg.style.display = 'none';
+    hash.style.display = scoreboard.style.display = 'flex';
+
     if (gameMode == 'single') {
         replay('multi');
         singleMode();
@@ -41,13 +46,11 @@ function singleMode() {
     for (i = 0; i < fields.length; i++) {
         fields[i].addEventListener('click', singlePlayerFunction)
     }
-    checkWin();
-
 }
 
 // Single Player Function
 function cpuPlay() {
-    if (!checkWin()) {
+    if (!isOver) {
         let random;
         do {
             random = Math.floor(Math.random() * 9);
@@ -56,6 +59,7 @@ function cpuPlay() {
         for (i = 0; i < fields.length; i++) {
             fields[random].innerText = 'O';
             plays2++;
+            checkWin()
             for (i = 0; i < fields.length; i++) {
                 fields[i].addEventListener('click', singleMode());
             }
@@ -73,17 +77,19 @@ let singlePlayerFunction = function jogada1() {
     }
     if (checkWin()) {
         filled = true;
-    }
+    }    
     if (!filled) {
         // filling the field after verifying which turn is
         counter++;
         if (plays1 == plays2 && plays1 != 4) {
             this.innerText = 'X';
             plays1++;
+            checkWin();
             cpuPlay()
         } else if (plays2 == 4) {
             this.innerText = 'X'
             counter = 9
+            checkWin()
         }
     }
 }
@@ -136,10 +142,11 @@ function checkWin() {
         casa1.innerText == 'X' && casa5.innerText == 'X' && casa9.innerText == 'X' ||
         casa3.innerText == 'X' && casa5.innerText == 'X' && casa7.innerText == 'X'
     ) {
+        wins1++;
+        isOver = true
         setTimeout(function() {
             gameOver('X');
-            Xscore.innerText = parseInt(Xscore.innerText) + 1
-            console.log('ncjsndjns')
+            score('X', wins1);
         }, 250)
         return true;
     } else if (
@@ -151,9 +158,11 @@ function checkWin() {
         casa3.innerText == 'O' && casa6.innerText == 'O' && casa9.innerText == 'O' ||
         casa1.innerText == 'O' && casa5.innerText == 'O' && casa9.innerText == 'O' ||
         casa3.innerText == 'O' && casa5.innerText == 'O' && casa7.innerText == 'O') {
+        wins2++;
+        isOver = true
         setTimeout(function() {
             gameOver('O');
-            Oscore.innerText = parseInt(Oscore.innerText) + 1
+            score('O', wins2);
         }, 250)
         return true;
     } else if (counter == 9) {
@@ -175,8 +184,17 @@ function gameOver(winner) {
     }
 }
 
+function score(winner, score) {
+    if (winner == 'X') {
+        score1.innerText = 'X: ' + score;
+    } else if (winner == 'O') {
+        score2.innerText = 'O: ' + score;
+    }
+}
+
 // Replay Button
 function replay(menu) {
+    isOver = false;
     counter = 0;
     for (i = 0; i < fields.length; i++) {
         fields[i].innerText = '';
@@ -204,8 +222,10 @@ function replay(menu) {
 
 // Return to menu function
 function mainMenu() {
-    menu.style.display = 'block';
-    menuImg.style.display = 'block';
-    hash.style.display = 'none';
+    menu.style.display = menuImg.style.display = 'block';
+    hash.style.display = scoreboard.style.display = 'none';
+    wins1 = wins2 = 0;
+    score1.innerText = 'X: 0';
+    score2.innerText = 'O: 0';
     replay('menu');
 }
