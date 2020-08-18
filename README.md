@@ -1,11 +1,9 @@
 # TICTACTOE 
 <h2>TICTACTOE GAME DEVELOPED IN JAVASCRIPT <img src="assets/secundary-icon.png" width="30px" height="20px"></h1>
-<br>
 <img src="assets/demo.gif" width="400px" height="200px">
 <br>
-<br>
-<br>
 
+   
 ## HOW TO INIT THE APPLICATION
 
 <p>In the terminal, clone the project</p>
